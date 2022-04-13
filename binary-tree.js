@@ -17,6 +17,25 @@ class BinaryTree {
    * the length of the shortest path from the root to a leaf. */
 
   minDepth(node = this.root) {
+    if(this.root === null) return 0;
+    let visitQueue = [this.root];
+    let count = 0;
+    while(visitQueue.length !== 0){
+      
+      let current = visitQueue.shift();
+      count++;
+      console.log("THIS IS THE COUNT", count);
+      if(current.left){
+        visitQueue.push(current.left);
+      }
+      if(current.right){
+        visitQueue.push(current.right);
+      }
+      if(current.left === null && current.right === null){
+        return count;
+      }
+
+    }
 
   }
 
