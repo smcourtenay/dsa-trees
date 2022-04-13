@@ -19,11 +19,10 @@ class BinaryTree {
   minDepth(node = this.root) {
     if(this.root === null) return 0;
     let visitQueue = [this.root];
-    let count = 0;
+    let count = 1;
     while(visitQueue.length !== 0){
       
       let current = visitQueue.shift();
-      count++;
       console.log("THIS IS THE COUNT", count);
       if(current.left){
         visitQueue.push(current.left);
@@ -31,9 +30,20 @@ class BinaryTree {
       if(current.right){
         visitQueue.push(current.right);
       }
+      
       if(current.left === null && current.right === null){
+        console.log("FINAL COUNT", count)
         return count;
       }
+      
+      // Checks ahead to see if a leaf exists
+      if(current.left || current.right){
+        if((current.left.left || current.left.right) || (current.right.left || current.right.right))
+        count++; // tracks the levels
+      }
+
+
+      console.log("FINISHED VISITING CURRENT NODE")
 
     }
 
